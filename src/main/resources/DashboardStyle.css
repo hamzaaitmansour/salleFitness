@@ -1,0 +1,66 @@
+.buttonInterface{
+    -fx-background-color: linear-gradient(to top , f4845f, f79d65);
+
+}
+.shadow{
+    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0.5),8,0,0,0);
+
+
+}
+.btns{
+    -fx-background-color: TRANSPARENT;
+    -fx-border-color: white;
+    -fx-cursor:hand ;
+    -fx-text-fill: black;
+    -fx-border-radius: 15px;
+}
+.btns:hover{
+    -fx-background-color: white;
+    -fx-cursor:hand ;
+    -fx-text-fill: black;
+    -fx-border-radius: 15px;
+
+}
+.btnscoach{
+    -fx-background-color: linear-gradient(to top , f4845f, f79d65);
+
+    -fx-cursor:hand ;
+    -fx-text-fill: white;
+
+    -fx-border-radius: 15px;
+}
+.btnscoach:hover{
+    -fx-background-color:  f4845f ;
+
+    -fx-cursor:hand ;
+    -fx-text-fill: black;
+
+    -fx-border-radius: 15px;
+
+}
+.table-view{
+    -fx-background-color: TRANSPARENT;
+    -fx-background-radius: 8px;
+    -fx-border-color: black;
+
+
+}
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to top , f4845f, f79d65);
+    -fx-background-radius: 8px 8px 0px 0px;
+
+
+}
+.table-view .column-header, .filter{
+    -fx-background-color: TRANSPARENT;
+    -fx-size: 40px;
+
+}
+.table-view .column-header, .label{
+    -fx-text-fill: white;
+
+}
+.text{
+    -fx-text-fill: black;
+
+}

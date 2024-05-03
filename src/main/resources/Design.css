@@ -1,0 +1,64 @@
+.backg{
+    -fx-background-color: linear-gradient(to top right , f4845f, f79d65);
+}
+.signUpbtn{
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-radius: 5px ;
+
+}
+.signUpbtn:hover{
+    -fx-background-color: f79d65;
+
+}
+.exitbutton{
+    -fx-background-color: TRANSPARENT;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-fill: black;
+}
+.exitbutton:hover{
+    -fx-background-color: f79d65;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: f79d65;
+    -fx-text-fill: white;
+
+
+}
+.logbtn{
+    -fx-background-color: f79d65;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px ;
+
+}
+.logbtn:hover{
+    -fx-background-color: f79d65;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px ;
+    -fx-font-weight: bold;
+
+}
+.signUpbtn2{
+    -fx-background-color: transparent;
+    -fx-border-color: f79d65;
+    -fx-border-radius: 5px ;
+
+}
+.signUpbtn2:hover{
+    -fx-background-color: f79d65;
+
+}
+
+.clos{
+    -fx-background-radius:20px;
+    -fx-background-color: #b72d2d;
+
+
+}
+.clos:hover{
+    -fx-background-radius:20px;
+    -fx-background-color: #d35f5f;
+
+
+}
