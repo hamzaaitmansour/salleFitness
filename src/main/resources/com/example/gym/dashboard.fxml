@@ -14,7 +14,10 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -27,7 +30,7 @@
                <children>
                   <FontAwesomeIcon fill="#f4845f" glyphName="USER" layoutX="21.0" layoutY="28.0" />
                   <FontAwesomeIcon fill="#f4845f" glyphName="USERS" layoutX="147.0" layoutY="28.0" />
-                  <Label layoutX="191.0" layoutY="15.0" styleClass="text" text="Gym management system">
+                  <Label layoutX="191.0" layoutY="15.0" styleClass="text" text="Souss fitness System">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -58,42 +61,49 @@
             </AnchorPane>
             <AnchorPane layoutX="-1.0" layoutY="46.0" prefHeight="559.0" prefWidth="267.0" stylesheets="@../../../DashboardStyle.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="46.0">
                <children>
-                  <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="94.0" layoutY="133.0" size="7em" />
-                  <Label layoutX="85.0" layoutY="160.0" text="Welcome ,">
+                  <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="55.0" layoutY="233.0" size="3em" text="" wrappingWidth="60.0" />
+                  <Label layoutX="85.0" layoutY="160.0" text="Bienvenu">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
                   <Line endX="100.0" layoutX="115.0" layoutY="195.0" startX="-63.0000114440918" startY="1.52587890625E-5" />
-                  <Button fx:id="btn_dashboard" layoutX="46.0" layoutY="278.0" mnemonicParsing="false" onAction="#showDashboard" prefHeight="39.0" prefWidth="164.0" styleClass="btns" stylesheets="@../../../DashboardStyle.css" text="Dashboard" />
-                  <Button fx:id="btn_coach" layoutX="46.0" layoutY="327.0" mnemonicParsing="false" onAction="#showCoach" prefHeight="39.0" prefWidth="164.0" styleClass="btns" text="Coach" />
-                  <Button fx:id="btn_membres" layoutX="46.0" layoutY="375.0" mnemonicParsing="false" onAction="#showMembres" prefHeight="39.0" prefWidth="164.0" styleClass="btns" text="Membres" />
+                  <Button fx:id="btn_coach" layoutX="40.0" layoutY="418.0" mnemonicParsing="false" onAction="#showCoach" prefHeight="39.0" prefWidth="164.0" styleClass="btns" text="Coach" />
+                  <Button fx:id="btn_membres" layoutX="40.0" layoutY="360.0" mnemonicParsing="false" onAction="#showMembres" prefHeight="39.0" prefWidth="164.0" styleClass="btns" text="Membres" />
                   <Button fx:id="logout" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #f4845f;">
                      <graphic>
                         <FontAwesomeIcon fx:id="logoutbtn" fill="WHITE" glyphName="SIGN_OUT" size="2em" styleClass="shadow" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btn_payment" layoutX="45.0" layoutY="424.0" mnemonicParsing="false" onAction="#showPayment" prefHeight="39.0" prefWidth="164.0" styleClass="btns" text="Payment" />
-                  <Label layoutX="53.0" layoutY="509.0" text="logout" />
+                  <Button fx:id="btn_payment" layoutX="40.0" layoutY="303.0" mnemonicParsing="false" onAction="#showPayment" prefHeight="39.0" prefWidth="164.0" styleClass="btns" text="Paiement" />
+                  <Label layoutX="53.0" layoutY="509.0" text="Se déconnecter" />
                   <TextField fx:id="user2" alignment="CENTER" layoutX="-1.0" layoutY="204.0" prefHeight="33.0" prefWidth="267.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="admin">
                      <font>
                         <Font name="Candara Bold" size="17.0" />
                      </font>
                   </TextField>
+                  <ImageView fitHeight="130.0" fitWidth="150.0" layoutX="62.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/Logoo.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btn_dashboard" layoutX="40.0" layoutY="248.0" mnemonicParsing="false" onAction="#showDashboard" prefHeight="39.0" prefWidth="164.0" styleClass="btns" stylesheets="@../../../DashboardStyle.css" text=" Statistiques" />
+                  <Separator fx:id="s1" layoutX="52.0" layoutY="268.0" prefHeight="3.0" prefWidth="139.0" />
+                  <Separator fx:id="s2" layoutX="57.0" layoutY="436.0" prefHeight="3.0" prefWidth="139.0" />
                </children>
                <styleClass>
                   <String fx:value="buttonInterface" />
                   <String fx:value="shadow" />
                </styleClass>
             </AnchorPane>
-            <AnchorPane fx:id="dashboardForm" layoutX="288.0" layoutY="44.0" prefHeight="546.0" prefWidth="799.0">
+            <AnchorPane fx:id="dashboardForm" layoutX="288.0" layoutY="44.0" prefHeight="546.0" prefWidth="799.0" visible="false">
                <children>
                   <AnchorPane layoutY="3.0" prefHeight="146.0" prefWidth="782.0" style="-fx-background-color: white;" styleClass="shadow">
                      <children>
                         <AnchorPane layoutX="6.0" layoutY="9.0" prefHeight="130.0" prefWidth="252.0" style="-fx-background-color: #f4845f;" styleClass="shadow">
                            <children>
                               <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="55.0" size="4em" />
-                              <Label layoutX="26.0" layoutY="84.0" text="Numbre of membres" textFill="WHITE">
+                              <Label layoutX="26.0" layoutY="84.0" text="Nombre de membres" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Label>
@@ -107,7 +117,7 @@
                         <AnchorPane layoutX="265.0" layoutY="9.0" prefHeight="130.0" prefWidth="252.0" style="-fx-background-color: #f4845f;" styleClass="shadow">
                            <children>
                               <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="14.0" layoutY="55.0" size="4em" />
-                              <Label layoutX="14.0" layoutY="80.0" text="Numbre of coachs" textFill="WHITE">
+                              <Label layoutX="14.0" layoutY="80.0" text="Nombre de coachs" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Label>
@@ -121,13 +131,13 @@
                         <AnchorPane layoutX="523.0" layoutY="9.0" prefHeight="130.0" prefWidth="252.0" style="-fx-background-color: #f4845f;" styleClass="shadow" stylesheets="@../../../DashboardStyle.css">
                            <children>
                               <FontAwesomeIcon fill="WHITE" glyphName="MONEY" layoutX="14.0" layoutY="55.0" size="4em" />
-                              <Label fx:id="incom" alignment="TOP_RIGHT" layoutX="153.0" layoutY="16.0" prefHeight="20.0" prefWidth="72.0" text="0.0" textFill="WHITE">
+                              <Label fx:id="incom" alignment="TOP_RIGHT" layoutX="129.0" layoutY="16.0" prefHeight="20.0" prefWidth="96.0" text="0.0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="235.0" layoutY="17.0" text="\$" textFill="WHITE" />
-                              <Label layoutX="22.0" layoutY="78.0" text="Incom" textFill="WHITE">
+                              <Label layoutX="235.0" layoutY="17.0" text="DHS" textFill="WHITE" />
+                              <Label layoutX="22.0" layoutY="78.0" text="Revenu" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -158,20 +168,20 @@
                      <children>
                         <Label layoutX="20.0" layoutY="41.0" styleClass="text" text="coach ID :" />
                         <TextField fx:id="coach_id" layoutX="87.0" layoutY="41.0" prefHeight="25.0" prefWidth="156.0" promptText="CIN" />
-                        <Label layoutX="20.0" layoutY="74.0" styleClass="text" text="Name :" />
-                        <TextField fx:id="coach_name" layoutX="87.0" layoutY="74.0" prefHeight="25.0" prefWidth="156.0" promptText="full name" />
+                        <Label layoutX="20.0" layoutY="74.0" styleClass="text" text="Nom" />
+                        <TextField fx:id="coach_name" layoutX="87.0" layoutY="74.0" prefHeight="25.0" prefWidth="156.0" promptText="nom complet" />
                         <Label layoutX="20.0" layoutY="113.0" styleClass="text" text="Adresse :" />
-                        <TextArea fx:id="coach_adresse" layoutX="88.0" layoutY="117.0" prefHeight="72.0" prefWidth="156.0" promptText="local adresse" />
-                        <ComboBox fx:id="coach_gendre" layoutX="90.0" layoutY="202.0" prefWidth="150.0" promptText="choice..." />
-                        <Label layoutX="25.0" layoutY="206.0" styleClass="text" text="Gendre :" />
-                        <Label layoutX="28.0" layoutY="250.0" styleClass="text" text="Phone #:" />
-                        <TextField fx:id="coach_phone" layoutX="90.0" layoutY="250.0" promptText="+2126-51667" />
+                        <TextArea fx:id="coach_adresse" layoutX="88.0" layoutY="117.0" prefHeight="72.0" prefWidth="156.0" promptText="Adresse locale" />
+                        <ComboBox fx:id="coach_gendre" layoutX="90.0" layoutY="202.0" prefWidth="150.0" promptText="choisir..." />
+                        <Label layoutX="25.0" layoutY="206.0" styleClass="text" text="Genre :" />
+                        <Label layoutX="25.0" layoutY="254.0" styleClass="text" text="Tél #+212:" />
+                        <TextField fx:id="coach_phone" layoutX="90.0" layoutY="250.0" promptText="6332145" />
                         <Button fx:id="coach_btn_reset" layoutX="20.0" layoutY="375.0" mnemonicParsing="false" onAction="#clearcoachBtn" prefHeight="32.0" prefWidth="104.0" styleClass="btnscoach" stylesheets="@../../../DashboardStyle.css" text="reset" />
-                        <Button fx:id="coach_btn_delete" layoutX="136.0" layoutY="375.0" mnemonicParsing="false" onAction="#coachDelete" prefHeight="32.0" prefWidth="111.0" styleClass="btnscoach" stylesheets="@../../../DashboardStyle.css" text="Delete" />
-                        <Button fx:id="coach_btn_add" layoutX="20.0" layoutY="328.0" mnemonicParsing="false" onAction="#coachADD" prefHeight="32.0" prefWidth="104.0" styleClass="btnscoach" stylesheets="@../../../DashboardStyle.css" text="Add" />
-                        <Button fx:id="coach_btn_update" layoutX="136.0" layoutY="328.0" mnemonicParsing="false" onAction="#coachUpdate" prefHeight="32.0" prefWidth="111.0" styleClass="btnscoach" stylesheets="@../../../DashboardStyle.css" text="Update" />
-                        <Label layoutX="29.0" layoutY="285.0" styleClass="text" text="Status :" />
-                        <ComboBox fx:id="coach_status" layoutX="90.0" layoutY="285.0" prefWidth="150.0" promptText="choice..." />
+                        <Button fx:id="coach_btn_delete" layoutX="136.0" layoutY="375.0" mnemonicParsing="false" onAction="#coachDelete" prefHeight="32.0" prefWidth="111.0" styleClass="btnscoach" stylesheets="@../../../DashboardStyle.css" text="Supprimer" />
+                        <Button fx:id="coach_btn_add" layoutX="20.0" layoutY="328.0" mnemonicParsing="false" onAction="#coachADD" prefHeight="32.0" prefWidth="104.0" styleClass="btnscoach" stylesheets="@../../../DashboardStyle.css" text="Ajouter" />
+                        <Button fx:id="coach_btn_update" layoutX="136.0" layoutY="328.0" mnemonicParsing="false" onAction="#coachUpdate" prefHeight="32.0" prefWidth="111.0" styleClass="btnscoach" stylesheets="@../../../DashboardStyle.css" text="Modifier" />
+                        <Label layoutX="29.0" layoutY="285.0" styleClass="text" text="Statut :" />
+                        <ComboBox fx:id="coach_status" layoutX="90.0" layoutY="285.0" prefWidth="150.0" promptText="choisir..." />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="291.0" layoutY="14.0" prefHeight="497.0" prefWidth="494.0" style="-fx-background-color: white;" styleClass="shadow" AnchorPane.bottomAnchor="14.666666666666742" AnchorPane.topAnchor="14.0">
@@ -179,43 +189,43 @@
                         <TableView fx:id="coach_tableView" layoutX="14.0" layoutY="11.0" onMouseClicked="#coachSelect" prefHeight="483.0" prefWidth="475.0">
                            <columns>
                               <TableColumn fx:id="coach_cln_id" prefWidth="66.6666259765625" text="ID_coach" />
-                              <TableColumn fx:id="coach_cln_name" prefWidth="90.6666259765625" text="name" />
+                              <TableColumn fx:id="coach_cln_name" prefWidth="90.6666259765625" text="Nom" />
                               <TableColumn fx:id="coach_cln_adresse" prefWidth="90.66668701171875" text="Adresse" />
-                              <TableColumn fx:id="coach_cln_gender" prefWidth="60.66668701171875" text="Gender" />
-                              <TableColumn fx:id="coach_cln_phone" prefWidth="91.33331298828125" text="phone#" />
-                              <TableColumn fx:id="coach_cln_status" maxWidth="118.0" minWidth="-1.0" prefWidth="74.0" text="Status" />
+                              <TableColumn fx:id="coach_cln_gender" prefWidth="60.66668701171875" text="Genre" />
+                              <TableColumn fx:id="coach_cln_phone" prefWidth="91.33331298828125" text="Tel#" />
+                              <TableColumn fx:id="coach_cln_status" maxWidth="118.0" minWidth="-1.0" prefWidth="74.0" text="Statut" />
                            </columns>
                         </TableView>
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="membresForm" layoutX="279.0" layoutY="44.0" prefHeight="540.0" prefWidth="799.0" style="-fx-background-color: white;" styleClass="shadow" stylesheets="@../../../DashboardStyle.css" visible="false">
+            <AnchorPane fx:id="membresForm" layoutX="279.0" layoutY="44.0" prefHeight="540.0" prefWidth="799.0" style="-fx-background-color: white;" styleClass="shadow" stylesheets="@../../../DashboardStyle.css">
                <children>
                   <AnchorPane layoutX="14.0" layoutY="16.0" prefHeight="189.0" prefWidth="773.0" style="-fx-background-color: white;" styleClass="shadow">
                      <children>
                         <Label layoutX="31.0" layoutY="14.0" styleClass="text" text="Membre ID :" />
                         <TextField fx:id="membres_Id" layoutX="104.0" layoutY="10.0" promptText="CIN" />
-                        <Label layoutX="61.0" layoutY="47.0" styleClass="text" text="Name :" />
+                        <Label layoutX="61.0" layoutY="47.0" styleClass="text" text="Nom" />
                         <Label layoutX="44.0" layoutY="77.0" styleClass="text" text="Adresse :" />
-                        <TextField fx:id="membres_name" layoutX="104.0" layoutY="43.0" promptText="CIN" />
+                        <TextField fx:id="membres_name" layoutX="104.0" layoutY="43.0" promptText="nom complete" />
                         <TextArea fx:id="membres_adresse" layoutX="101.0" layoutY="77.0" prefHeight="64.0" prefWidth="156.0" promptText="adresse" />
-                        <Label layoutX="56.0" layoutY="148.0" styleClass="text" text="phone #" />
+                        <Label layoutX="39.0" layoutY="148.0" styleClass="text" text="Tel # +212" />
                         <TextField fx:id="membres_phone" layoutX="104.0" layoutY="144.0" promptText="phone" />
-                        <Label layoutX="280.0" layoutY="14.0" styleClass="text" text="Gender" />
-                        <ComboBox fx:id="membres_gendre" layoutX="347.0" layoutY="10.0" prefHeight="25.0" prefWidth="175.0" promptText="choose..." />
+                        <Label layoutX="280.0" layoutY="14.0" styleClass="text" text="Genre" />
+                        <ComboBox fx:id="membres_gendre" layoutX="347.0" layoutY="10.0" prefHeight="25.0" prefWidth="175.0" promptText="choisir..." />
                         <Label layoutX="280.0" layoutY="47.0" styleClass="text" text="Date debut" />
-                        <Label layoutX="280.0" layoutY="77.0" styleClass="text" text="End date" />
+                        <Label layoutX="280.0" layoutY="77.0" styleClass="text" text="Date fin" />
                         <DatePicker fx:id="membres_datefin" layoutX="347.0" layoutY="73.0" promptText="1/2/2006" />
                         <DatePicker fx:id="membres_datedebut" layoutX="347.0" layoutY="43.0" promptText="09/7/2005" />
-                        <Button fx:id="membres_btn_add" layoutX="540.0" layoutY="23.0" mnemonicParsing="false" onAction="#membreAdd" prefHeight="48.0" prefWidth="104.0" styleClass="btnscoach" text="Add" />
-                        <Button fx:id="membres_btn_update" layoutX="655.0" layoutY="23.0" mnemonicParsing="false" onAction="#membreUpdate" prefHeight="48.0" prefWidth="104.0" styleClass="btnscoach" text="Update" />
-                        <Button fx:id="membres_btn_reset" layoutX="540.0" layoutY="85.0" mnemonicParsing="false" onAction="#clearMembre" prefHeight="48.0" prefWidth="104.0" styleClass="btnscoach" text="Reset" />
-                        <Button fx:id="membres_btn_delete" layoutX="655.0" layoutY="85.0" mnemonicParsing="false" onAction="#membreDelete" prefHeight="48.0" prefWidth="104.0" styleClass="btnscoach" text="Delete" />
-                        <Label layoutX="303.0" layoutY="148.0" styleClass="text" text="Status" />
-                        <ComboBox fx:id="membres_status" layoutX="346.0" layoutY="144.0" prefHeight="25.0" prefWidth="175.0" promptText="choose..." />
-                        <ComboBox fx:id="membres_schudle" layoutX="347.0" layoutY="109.0" prefHeight="25.0" prefWidth="175.0" promptText="choose..." />
-                        <Label layoutX="286.0" layoutY="113.0" styleClass="text" text="Schudle :" />
+                        <Button fx:id="membres_btn_add" layoutX="540.0" layoutY="23.0" mnemonicParsing="false" onAction="#membreAdd" prefHeight="48.0" prefWidth="104.0" styleClass="btnscoach" text="Ajouter" />
+                        <Button fx:id="membres_btn_update" layoutX="655.0" layoutY="23.0" mnemonicParsing="false" onAction="#membreUpdate" prefHeight="48.0" prefWidth="104.0" styleClass="btnscoach" text="Modifier" />
+                        <Button fx:id="membres_btn_reset" layoutX="540.0" layoutY="85.0" mnemonicParsing="false" onAction="#clearMembre" prefHeight="48.0" prefWidth="104.0" styleClass="btnscoach" text="reset" />
+                        <Button fx:id="membres_btn_delete" layoutX="655.0" layoutY="85.0" mnemonicParsing="false" onAction="#membreDelete" prefHeight="48.0" prefWidth="104.0" styleClass="btnscoach" text="Supprimer" />
+                        <Label layoutX="303.0" layoutY="148.0" styleClass="text" text="Statut" />
+                        <ComboBox fx:id="membres_status" layoutX="346.0" layoutY="144.0" prefHeight="25.0" prefWidth="175.0" promptText="choisir..." />
+                        <ComboBox fx:id="membres_schudle" layoutX="347.0" layoutY="109.0" prefHeight="25.0" prefWidth="175.0" promptText="choisir.." />
+                        <Label layoutX="286.0" layoutY="113.0" styleClass="text" text="Calendrier:" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="14.0" layoutY="214.0" prefHeight="313.0" prefWidth="773.0" style="-fx-background-color: white;" styleClass="shadow">
@@ -223,12 +233,12 @@
                         <TableView fx:id="membres_tableView" onMouseClicked="#membreSelect" prefHeight="313.0" prefWidth="773.0">
                            <columns>
                               <TableColumn fx:id="membres_table_cln_id" prefWidth="75.0" text="Membre ID" />
-                              <TableColumn fx:id="membres_table_cln_name" prefWidth="108.66665649414062" text="Name" />
+                              <TableColumn fx:id="membres_table_cln_name" prefWidth="108.66665649414062" text="Nom" />
                               <TableColumn fx:id="membres_table_cln_adresse" prefWidth="64.00003051757812" text="Adresse" />
-                              <TableColumn fx:id="membres_table_cln_phone" prefWidth="99.33331298828125" text="phone#" />
-                              <TableColumn fx:id="membres_table_cln_gender" prefWidth="87.33331298828125" text="Gender" />
+                              <TableColumn fx:id="membres_table_cln_phone" prefWidth="99.33331298828125" text="Tel#" />
+                              <TableColumn fx:id="membres_table_cln_gender" prefWidth="87.33331298828125" text="Genre" />
                               <TableColumn fx:id="membres_table_cln_dateDebut" prefWidth="142.0" text="Date debut" />
-                              <TableColumn fx:id="membres_table_cln_dateFin" prefWidth="104.0" text="End date" />
+                              <TableColumn fx:id="membres_table_cln_dateFin" prefWidth="104.0" text="Date fin" />
                               <TableColumn fx:id="membres_table_cln_status" prefWidth="92.66668701171875" text="Status" />
                            </columns>
                         </TableView>
@@ -240,32 +250,67 @@
                <children>
                   <AnchorPane layoutX="459.0" layoutY="14.0" prefHeight="521.0" prefWidth="343.0" style="-fx-background-color: white;" styleClass="shadow">
                      <children>
-                        <ComboBox fx:id="payment_customerId" layoutX="150.0" layoutY="38.0" prefWidth="150.0" promptText="Choose..." />
-                        <ComboBox fx:id="payment_Name" layoutX="150.0" layoutY="91.0" onAction="#paymentName" onMouseClicked="#paymentName" prefWidth="150.0" promptText="Choose..." />
+                        <ComboBox fx:id="payment_customerId" layoutX="150.0" layoutY="38.0" prefWidth="150.0" promptText="Choisir..." />
+                        <ComboBox fx:id="payment_Name" layoutX="150.0" layoutY="91.0" onAction="#paymentName" onMouseClicked="#paymentName" prefWidth="150.0" promptText="Choisir..." />
                         <Label layoutX="68.0" layoutY="42.0" styleClass="text" text="Customer ID :" />
-                        <Label layoutX="104.0" layoutY="95.0" styleClass="text" text="Name :" />
-                        <Label layoutX="104.0" layoutY="148.0" styleClass="text" text="Total :" />
+                        <Label layoutX="104.0" layoutY="95.0" styleClass="text" text="Nom" />
+                        <Label layoutX="77.0" layoutY="148.0" styleClass="text" text="Total : DHS" />
                         <Label fx:id="payment_total" layoutX="150.0" layoutY="148.0" styleClass="text" />
-                        <Label layoutX="91.0" layoutY="179.0" styleClass="text" text="Amount :" />
-                        <Label layoutX="92.0" layoutY="218.0" styleClass="text" text="Change :" />
+                        <Label layoutX="71.0" layoutY="179.0" styleClass="text" text="Mantant DHS" />
+                        <Label layoutX="92.0" layoutY="218.0" styleClass="text" text="Reste" />
                         <TextField fx:id="payment_amount" layoutX="150.0" layoutY="175.0" onAction="#changePayment" promptText="\$0.0" />
                         <Label fx:id="payment_change" layoutX="150.0" layoutY="218.0" styleClass="text" text="\$0.0" />
-                        <Button fx:id="payment_btnPay" layoutX="94.0" layoutY="311.0" mnemonicParsing="false" onAction="#changePayment" prefHeight="48.0" prefWidth="205.0" styleClass="btnscoach" text="PAY" />
+                        <Button fx:id="payment_btnPay" layoutX="94.0" layoutY="311.0" mnemonicParsing="false" onAction="#changePayment" prefHeight="48.0" prefWidth="205.0" styleClass="btnscoach" text="PAYER" />
+                        <Button fx:id="telecharger" layoutX="94.0" layoutY="382.0" mnemonicParsing="false" onAction="#imprimer" prefHeight="48.0" prefWidth="205.0" styleClass="btnscoach" text="TELECHARGER" visible="false" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="7.0" layoutY="14.0" prefHeight="521.0" prefWidth="441.0" style="-fx-background-color: white;" styleClass="shadow">
+                  <AnchorPane fx:id="paymentTable" layoutX="7.0" layoutY="14.0" prefHeight="521.0" prefWidth="441.0" style="-fx-background-color: white;" styleClass="shadow">
                      <children>
                         <TableView fx:id="payment_tableView" layoutY="-1.0" prefHeight="521.0" prefWidth="441.0">
                            <columns>
                               <TableColumn fx:id="payment_coltableId" prefWidth="75.0" text="Membre ID" />
-                              <TableColumn fx:id="payment_coltableName" prefWidth="87.33331298828125" text="Name" />
-                              <TableColumn fx:id="payment_coltableStartDate" prefWidth="98.00003051757812" text="Start Date" />
-                              <TableColumn fx:id="payment_coltableEndDate" prefWidth="84.66668701171875" text="End date" />
+                              <TableColumn fx:id="payment_coltableName" prefWidth="87.33331298828125" text="Nom" />
+                              <TableColumn fx:id="payment_coltableStartDate" prefWidth="98.00003051757812" text="Date debut" />
+                              <TableColumn fx:id="payment_coltableEndDate" prefWidth="84.66668701171875" text="Date fin" />
                               <TableColumn fx:id="payment_coltableStatus" prefWidth="95.3333740234375" text="Status" />
                            </columns>
                         </TableView>
                      </children>
                   </AnchorPane>
+                  <Pane fx:id="facture_pane" layoutX="10.0" layoutY="15.0" prefHeight="521.0" prefWidth="431.0" style="-fx-background-color: white;" styleClass="shadow" visible="false">
+                     <children>
+                        <Label layoutX="176.0" layoutY="96.0" styleClass="text" text="Souss fitness System">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="130.0" fitWidth="150.0" layoutX="46.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/Logoo.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="97.0" layoutY="200.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" text="Customer Id :" />
+                        <Label layoutX="97.0" layoutY="236.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" text="Nom de membre:" />
+                        <Label layoutX="97.0" layoutY="270.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" text="Date de debut:" />
+                        <Label layoutX="97.0" layoutY="305.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" text="Date de fin" />
+                        <Label layoutX="97.0" layoutY="336.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" text="Calendrier" />
+                        <Separator layoutX="176.0" layoutY="144.0" prefHeight="1.0" prefWidth="213.0" />
+                        <Separator layoutX="77.0" layoutY="194.0" orientation="VERTICAL" prefHeight="257.0" prefWidth="7.0" />
+                        <Label fx:id="facture_date" layoutX="361.0" layoutY="32.0" style="-fx-text-fill: black;" text="date ACtuel" />
+                        <Label layoutX="97.0" layoutY="393.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" text="Montant" />
+                        <Label layoutX="97.0" layoutY="364.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" text="Total" />
+                        <Label layoutX="97.0" layoutY="421.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" text="Reste" />
+                        <Label fx:id="facture_id" layoutX="201.0" layoutY="200.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" />
+                        <Label fx:id="facture_nom" layoutX="208.0" layoutY="236.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" />
+                        <Label fx:id="facture_datedebut" layoutX="201.0" layoutY="270.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" />
+                        <Label fx:id="facture_datefin" layoutX="193.0" layoutY="305.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" />
+                        <Label fx:id="facture_calendrier" layoutX="201.0" layoutY="336.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" />
+                        <Label fx:id="facture_total" layoutX="208.0" layoutY="364.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" />
+                        <Label fx:id="facture_montant" layoutX="208.0" layoutY="393.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" />
+                        <Label fx:id="facture_reste" layoutX="201.0" layoutY="421.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: black;" />
+                        <Label layoutX="26.0" layoutY="483.0" prefHeight="17.0" prefWidth="380.0" style="-fx-text-fill: black;" text="le fitness n'est pas seulment une destination , c'est une façon de vivre" />
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
          </children>

@@ -1,10 +1,12 @@
 package com.example.gym;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.print.PrinterJob;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
@@ -13,15 +15,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -98,6 +101,8 @@ public class DashboardController implements Initializable{
 
     @FXML
     private AnchorPane dashboardForm;
+    @FXML
+    private AnchorPane paymentTable;
 
     @FXML
     private Label incom;
@@ -222,6 +227,31 @@ public class DashboardController implements Initializable{
     private TextField user2;
     @FXML
     private AnchorPane main_f;
+    @FXML
+    private Label facture_calendrier;
+
+    @FXML
+    private Label facture_date;
+
+    @FXML
+    private Label facture_datedebut;
+
+    @FXML
+    private Label facture_datefin;
+
+    @FXML
+    private Label facture_id;
+
+    @FXML
+    private Label facture_montant;
+
+    @FXML
+    private Label facture_nom;
+    @FXML
+    private Label facture_reste;
+
+    @FXML
+    private Label facture_total;
     public void close(){
         Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("close application");
@@ -248,7 +278,7 @@ public class DashboardController implements Initializable{
         if(option.get().equals(ButtonType.OK))
 
         {
-        logout.getScene().getWindow().hide();
+            logout.getScene().getWindow().hide();
             Stage stage=new Stage();
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
             root.setOnMousePressed((MouseEvent event )->{
@@ -280,31 +310,31 @@ public class DashboardController implements Initializable{
             alert.close();
 
     }
- int nm;
+    int nm;
     public void dashboardnbrM()  {
         String sql="select count(id) from membre WHERE Membre_status='Paid'";
         connection=Database.connectDb();
         try{
-        prepare=connection.prepareStatement(sql);
-        result=prepare.executeQuery();
-        if(result.next())
-            nm =result.getInt("count(id)");
-        nbr_membres.setText(String.valueOf(nm));}
+            prepare=connection.prepareStatement(sql);
+            result=prepare.executeQuery();
+            if(result.next())
+                nm =result.getInt("count(id)");
+            nbr_membres.setText(String.valueOf(nm));}
         catch (Exception e)
-    {
-        e.printStackTrace();
-    }
+        {
+            e.printStackTrace();
+        }
 
     }
     public void dashboardnbrC() {
         String sql="select count(id) from coach WHERE coach_status='Active'";
         connection=Database.connectDb();
         try{
-        prepare=connection.prepareStatement(sql);
-        result=prepare.executeQuery();
-        if(result.next())
-            nm =result.getInt("count(id)");
-        nbr_coachs.setText(String.valueOf(nm));
+            prepare=connection.prepareStatement(sql);
+            result=prepare.executeQuery();
+            if(result.next())
+                nm =result.getInt("count(id)");
+            nbr_coachs.setText(String.valueOf(nm));
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -333,12 +363,12 @@ public class DashboardController implements Initializable{
         areaChart.getData().clear();
         String sql = "select dateDebut ,sum(price) from membre GROUP BY dateDebut ORDER BY TIMESTAMP(dateDebut) ASC LIMIT 10";
         try{connection=Database.connectDb();
-        prepare=connection.prepareStatement(sql);
-        result=prepare.executeQuery();
-        XYChart.Series chart= new XYChart.Series();
-        while(result.next())
-            chart.getData().add(new XYChart.Data(result.getString(1),result.getDouble(2)));
-        areaChart.getData().add(chart);}
+            prepare=connection.prepareStatement(sql);
+            result=prepare.executeQuery();
+            XYChart.Series chart= new XYChart.Series();
+            while(result.next())
+                chart.getData().add(new XYChart.Data(result.getString(1),result.getDouble(2)));
+            areaChart.getData().add(chart);}
         catch (Exception e)
         {
             e.printStackTrace();
@@ -422,8 +452,8 @@ public class DashboardController implements Initializable{
     String scheduleM[]={" 8-11 ","11-3", " 2-5" , "20 - 23"};
     public void membreSchedule(){
         List<String> ms = new ArrayList<>();
-       for(int i=0;i<4;i++)
-           ms.add(scheduleM[i]);
+        for(int i=0;i<4;i++)
+            ms.add(scheduleM[i]);
 
         ObservableList Listl = FXCollections.observableArrayList(ms);
         membres_schudle.setItems(Listl);
@@ -450,30 +480,42 @@ public class DashboardController implements Initializable{
         ObservableList<String> list =FXCollections.observableArrayList();
         String sql=" SELECT Membre_name from membre where Membre_Id='"+payment_customerId.getSelectionModel().getSelectedItem()+"'";
         Connection connect=Database.connectDb();
-       try{
-        prepare=connect.prepareStatement(sql);
-        result=prepare.executeQuery();
-        while(result.next())
-            list.add(result.getString("Membre_name"));
-        payment_Name.setItems(list);
-        totalSet();
+        try{
+            prepare=connect.prepareStatement(sql);
+            result=prepare.executeQuery();
+            while(result.next())
+                list.add(result.getString("Membre_name"));
+            payment_Name.setItems(list);
+            totalSet();
 
-           }
-       catch (Exception e)
-       {
-           e.printStackTrace();
-       }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
     }
     static double total;
+   static Date dateDebut;
+   static Date dateFin;
+   static String schedule;
+
     public void totalSet(){
-        String sql="SELECT price FROM membre WHERE Membre_Id='"+payment_customerId.getSelectionModel().getSelectedItem()+"' AND Membre_name='"+payment_Name.getSelectionModel().getSelectedItem()+"'";
+        String sql="SELECT price,dateDebut,dateFin,Membre_schedule FROM membre WHERE Membre_Id='"+payment_customerId.getSelectionModel().getSelectedItem()+"' AND Membre_name='"+payment_Name.getSelectionModel().getSelectedItem()+"'";
         connection=Database.connectDb();
         try{prepare=connection.prepareStatement(sql);
             result=prepare.executeQuery();
             if(result.next())
             {   total=result.getDouble("price");
+                dateDebut=result.getDate("dateDebut");
+                dateFin=result.getDate("dateFin");
+                schedule=result.getString("Membre_schedule");
                 payment_total.setText(" $ "+String.valueOf(total));
+                facture_calendrier.setText(schedule);
+                facture_datedebut.setText(String.valueOf(dateDebut));
+                facture_datefin.setText(String.valueOf(dateFin));
+                facture_nom.setText(payment_Name.getSelectionModel().getSelectedItem());
+
             }
 
         }catch (Exception e)
@@ -484,24 +526,71 @@ public class DashboardController implements Initializable{
     }
     double change=0;
     double amount=0;
-    public void changePayment(){
-        amount=Double.parseDouble(payment_amount.getText());
-        change = amount - total;
-        payment_change.setText(String.valueOf(change));
-        // SET PAID
-        String sql = "UPDATE membre SET Membre_status='Paid' WHERE Membre_Id='"+payment_customerId.getSelectionModel().getSelectedItem()+"'";
+    public void changePayment() {
+        amount = Double.parseDouble(payment_amount.getText());
+        if (payment_amount.getText().isEmpty() || payment_customerId.getSelectionModel().getSelectedItem() == null || total >amount) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Verifier les informations ");
+            alert.showAndWait();
+        } else {
+
+
+            change = amount - total;
+            payment_change.setText(String.valueOf(change));
+            // SET PAID
+            String sql = "UPDATE membre SET Membre_status='Paid' WHERE Membre_Id='" + payment_customerId.getSelectionModel().getSelectedItem() + "'";
+            connection = Database.connectDb();
+            try {
+                prepare = connection.prepareStatement(sql);
+                prepare.executeUpdate();
+                showPaymentlist();
+                String id=payment_customerId.getSelectionModel().getSelectedItem();
+                String nom = payment_Name.getSelectionModel().getSelectedItem();
+                facture_id.setText(id);
+                facture_montant.setText(String.valueOf(amount));
+                facture_total.setText(String.valueOf(total));
+                facture_reste.setText(String.valueOf(change));
+                telecharger.setVisible(true);
+                facture_pane.setVisible(true);
+                LocalDate currentTime = LocalDate.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String formattedTime = currentTime.format(formatter);
+                Date dateActuel = Date.valueOf(currentTime);
+                addFacture(id,nom,amount,change,dateDebut,dateFin,dateActuel);
+                payment_customerId.setValue(null);
+                payment_Name.setValue(null);
+
+                return;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+    public void addFacture(String id, String nom , double amount , double reste , Date dateDebut , Date dateFin , Date dateActuel)  {
+        String sql="INSERT INTO facture ( membrenom, membreId, amount, reste, dateDebut, dateFin, dateactuel) VALUES (?,?,?,?,?,?,?)";
         connection=Database.connectDb();
-        try{
+        try {
             prepare=connection.prepareStatement(sql);
+            prepare.setString(1, nom);
+            prepare.setString(2, id);
+            prepare.setDouble(3, amount);
+            prepare.setDouble(4, reste);
+            prepare.setDate(5, dateDebut);
+            prepare.setDate(6, dateFin);
+            prepare.setDate(7, dateActuel);
+
             prepare.executeUpdate();
-            showPaymentlist();}
-        catch (Exception e)
+            Alert alert=new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("facture added");
+            alert.showAndWait();
+            return;
+        }catch (SQLException e)
         {
             e.printStackTrace();
         }
-
     }
-
 
     public void coachStatusList()
     {
@@ -523,19 +612,19 @@ public class DashboardController implements Initializable{
         ObservableList<CoachData> List =FXCollections.observableArrayList();
         String sql="SELECT * FROM coach";
         try {
-          prepare=connection.prepareStatement(sql);
-          result= prepare.executeQuery();
-          CoachData cd;
-          while(result.next())
-          {
-              cd =new CoachData(result.getInt("id"),result.getString("coach_Id"),result.getString("coach_name"),result.getString("coach_adresse"),result.getString("coach_gendre"),result.getInt("coach_phone"),result.getString("coach_status"));
-              List.add(cd);
-          }
+            prepare=connection.prepareStatement(sql);
+            result= prepare.executeQuery();
+            CoachData cd;
+            while(result.next())
+            {
+                cd =new CoachData(result.getInt("id"),result.getString("coach_Id"),result.getString("coach_name"),result.getString("coach_adresse"),result.getString("coach_gendre"),result.getInt("coach_phone"),result.getString("coach_status"));
+                List.add(cd);
+            }
         }catch (Exception e)
         {
             e.printStackTrace();
         }
-      return List;
+        return List;
     }
 
 
@@ -677,10 +766,10 @@ public class DashboardController implements Initializable{
         MembreData cd= membres_tableView.getSelectionModel().getSelectedItem();
         int n =membres_tableView.getSelectionModel().getSelectedIndex();
         if(n-1< -1)return;
-         membres_name.setText(cd.getMembre_name());
-         membres_Id.setText(cd.getMembre_Id());
-         membres_phone.setText(String.valueOf(cd.getMembre_phone()));
-         membres_adresse.setText(cd.getMembre_adresse());
+        membres_name.setText(cd.getMembre_name());
+        membres_Id.setText(cd.getMembre_Id());
+        membres_phone.setText(String.valueOf(cd.getMembre_phone()));
+        membres_adresse.setText(cd.getMembre_adresse());
 
 
     }
@@ -716,36 +805,46 @@ public class DashboardController implements Initializable{
     int totalDay;
     public void membreAdd()
     {
+
+        if(membres_phone.getText().isEmpty()||membres_name.getText().isEmpty()|| membres_adresse.getText().isEmpty()||membres_Id.getText().isEmpty()||membres_schudle.getSelectionModel().getSelectedItem()==null||membres_datedebut.getValue()==null||membres_datefin.getValue()==null||membres_gendre.getSelectionModel().getSelectedItem()==null)
+        {
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Veuillez remplir tous les champs");
+            alert.showAndWait();
+            return;
+        }
         String sql ="INSERT INTO membre (Membre_Id , Membre_name, Membre_adresse , Membre_gendre , Membre_phone,Membre_status,Membre_schedule,dateDebut,dateFin,price) VALUES(?,?,?,?,?,?,?,?,?,?)";
         connection=Database.connectDb();
         try{
 
-                String checkid="SELECT Membre_Id FROM membre WHERE Membre_Id = '" +membres_Id.getText() + "'";
-                statement=connection.createStatement();
-                result=statement.executeQuery(checkid);
-                if(result.next())
-                {
-                    Alert alert=new Alert(Alert.AlertType.WARNING);
-                    alert.setContentText("Ce id exist deja");
-                    alert.showAndWait();
-                }
-                else{
-                    prepare = connection.prepareStatement(sql);
-                    prepare.setString(1, membres_Id.getText());
-                    prepare.setString(2, membres_name.getText());
-                    prepare.setString(3, membres_adresse.getText());
-                    prepare.setString(4, (String) membres_gendre.getSelectionModel().getSelectedItem());
-                    prepare.setString(5, membres_phone.getText());
-                    prepare.setString(6, (String) membres_status.getSelectionModel().getSelectedItem());
-                    prepare.setString(7, (String) membres_schudle.getSelectionModel().getSelectedItem());
-                    prepare.setString(8,String.valueOf(membres_datedebut.getValue()));
-                    prepare.setString(9,String.valueOf(membres_datefin.getValue()));
-                    totalDay=(int) ChronoUnit.DAYS.between(membres_datedebut.getValue(),membres_datefin.getValue());
-                    prepare.setString(10, String.valueOf(totalDay*13));
-                    prepare.executeUpdate();
-                    ShowMembres();
-                    clearMembre();
-                }
+            String checkid="SELECT Membre_Id FROM membre WHERE Membre_Id = '" +membres_Id.getText() + "'";
+            statement=connection.createStatement();
+            result=statement.executeQuery(checkid);
+            if(result.next())
+            {
+                Alert alert=new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Ce id exist deja");
+                alert.showAndWait();
+            }
+            else{
+
+                prepare = connection.prepareStatement(sql);
+                prepare.setString(1, membres_Id.getText());
+                prepare.setString(2, membres_name.getText());
+                prepare.setString(3, membres_adresse.getText());
+                prepare.setString(4, (String) membres_gendre.getSelectionModel().getSelectedItem());
+                prepare.setString(5, String.valueOf(membres_phone.getText()));
+                prepare.setString(6, (String) membres_status.getSelectionModel().getSelectedItem());
+                prepare.setString(7, (String) membres_schudle.getSelectionModel().getSelectedItem());
+                prepare.setString(8,String.valueOf(membres_datedebut.getValue()));
+                prepare.setString(9,String.valueOf(membres_datefin.getValue()));
+                totalDay=(int) ChronoUnit.DAYS.between(membres_datedebut.getValue(),membres_datefin.getValue());
+                //10 dhs pour chaque jour , 300 dhs pour un mois sur la salle
+                prepare.setString(10, String.valueOf(totalDay*10));
+                prepare.executeUpdate();
+                ShowMembres();
+                clearMembre();
+            }
 
         }catch (Exception e)
         {
@@ -765,11 +864,59 @@ public class DashboardController implements Initializable{
         payment_tableView.setItems(listm);
 
     }
+    @FXML
+    private Pane facture_pane;
+    @FXML
+    private Button telecharger;
+  public void imprimer(){
+      PrinterJob printer=PrinterJob.createPrinterJob();
+      if(printer != null)
+      {  boolean proced=printer.showPrintDialog(facture_pane.getScene().getWindow());
+          if(proced)
+          {
+              boolean print=printer.printPage(facture_pane);
+              if(print)
+              {
+                  printer.endJob();
+                  PauseTransition pause = new PauseTransition(Duration.seconds(5));
+                  pause.play();
+                  Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                  alert.setContentText("Votre facture est pret dans le dossier que vous avez choisi ");
+                  alert.showAndWait();
+                  facture_pane.setVisible(false);
+                  telecharger.setVisible(false);
+                  return;
+              }
+          }
+      }
 
-
-
+  }
+  @FXML
+  private  Separator s1;
+  @FXML
+  private  Separator s2;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        telecharger.setVisible(false);
+        facture_pane.setVisible(false);
+        if(data.getIamAdmin())
+        {
+            btn_coach.setVisible(true);
+            btn_dashboard.setVisible(true);
+            dashboardForm.setVisible(true);
+            membresForm.setVisible(false);
+            s1.setVisible(false); s2.setVisible(false);
+
+        }
+
+        else
+        {
+            btn_coach.setVisible(false);
+            btn_dashboard.setVisible(false);
+            dashboardForm.setVisible(false);
+            membresForm.setVisible(true);
+            s1.setVisible(true); s2.setVisible(true);
+        }
         user2.setText(data.getUsername());
         user.setText(data.getUsername());
 
@@ -777,6 +924,7 @@ public class DashboardController implements Initializable{
         DateTimeFormatter formatter =DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formattedTime = currentTime.format(formatter);
         date.setText(formattedTime);
+        facture_date.setText(formattedTime);
 
 
         dashboardcahrt();
