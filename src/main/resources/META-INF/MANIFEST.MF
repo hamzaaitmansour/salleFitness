@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: C:\Users\VIET\IdeaProjects\Gym\src\main\java\com\example\gym
+ \apps.java
+
